@@ -108,7 +108,7 @@
 
     console.log("!!! iframe transport called", options, origOptions, jqXHR);
               console.log("!!! adding iframe to header", $('meta[name="csp-nonce"]').attr('content'));
-    xhr.setRequestHeader('X-JQuery-Nonce', $('meta[name="csp-nonce"]').attr('content'));
+    jqXHR.setRequestHeader('X-JQuery-Nonce', $('meta[name="csp-nonce"]').attr('content'));
 
     var form = null,
         iframe = null,
