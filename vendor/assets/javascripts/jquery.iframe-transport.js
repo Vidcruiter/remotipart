@@ -105,11 +105,6 @@
   // when the "files" option has been set to a non-empty list of enabled file
   // inputs.
   $.ajaxTransport("iframe", function(options, origOptions, jqXHR) {
-
-    console.log("!!! iframe transport called", options, origOptions, jqXHR);
-              console.log("!!! adding iframe to header", $('meta[name="csp-nonce"]').attr('content'));
-    jqXHR.setRequestHeader('X-JQuery-Nonce', $('meta[name="csp-nonce"]').attr('content'));
-
     var form = null,
         iframe = null,
         name = "iframe-" + $.now(),
@@ -164,6 +159,12 @@
       // field, to help server-side code to determine that the upload happened
       // through this transport.
       $("<input type='hidden' value='IFrame' name='X-Requested-With' />").
+        appendTo(form);
+
+      // Add a hidden `X-JQuery-Nonce` field with the value `$('meta[name="csp-nonce"]').attr('content')` to the
+      // field, to help server-side code to handle csp rules that the upload happened
+      // through this transport.
+      $("<input type='hidden' value='" + $('meta[name="csp-nonce"]').attr('content') + "' name='X-JQuery-Nonce' />").
         appendTo(form);
 
       // Borrowed straight from the JQuery source.

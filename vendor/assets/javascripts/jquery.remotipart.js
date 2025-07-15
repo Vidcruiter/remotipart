@@ -48,7 +48,6 @@
             settings.data.push({name: csrfParam, value: csrfToken});
           }
 
-          console.log("!!! adding the header", $('meta[name="csp-nonce"]').attr('content'));
           xhr.setRequestHeader('X-JQuery-Nonce', $('meta[name="csp-nonce"]').attr('content'));
 
           // Allow remotipartSubmit to be cancelled if needed
