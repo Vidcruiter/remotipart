@@ -105,6 +105,9 @@
   // when the "files" option has been set to a non-empty list of enabled file
   // inputs.
   $.ajaxTransport("iframe", function(options, origOptions, jqXHR) {
+
+    console.log("!!! iframe transport called", options, origOptions, jqXHR);
+
     var form = null,
         iframe = null,
         name = "iframe-" + $.now(),
