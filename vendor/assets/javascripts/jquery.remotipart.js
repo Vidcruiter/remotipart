@@ -18,6 +18,7 @@
         // Allow setup part of $.rails.handleRemote to setup remote settings before canceling default remote handler
         // This is required in order to change the remote settings using the form details
         .one('ajax:beforeSend.remotipart', function(e, xhr, settings){
+          console.log("!!! test custom remotipart ");
           // Delete the beforeSend bindings, since we're about to re-submit via ajaxSubmit with the beforeSubmit
           // hook that was just setup and triggered via the default `$.rails.handleRemote`
           // delete settings.beforeSend;
