@@ -36,7 +36,7 @@ module Remotipart
       nonce = request.respond_to?(:content_security_policy_nonce) ? request.content_security_policy_nonce : nil
       nonce_attr = nonce ? %{ nonce="#{nonce}"} : ""
 
-      Rails.logger.info "!!! Remotipart code: nonce±±± #{nonce_attr}"
+      ::Rails.logger.info "!!! Remotipart code: nonce±±± #{nonce_attr}"
 
       if remotipart_submitted?
         response.body = %{<script type="text/javascript"#{nonce_attr}>try{window.parent.document;}catch(err){document.domain=document.domain;}</script><textarea data-type="#{response.content_type}" data-status="#{response.response_code}" data-statusText="#{response.message}"></textarea><script type="text/javascript"#{nonce_attr}>document.querySelector("textarea").value="#{escape_javascript(response.body)}";</script>}
